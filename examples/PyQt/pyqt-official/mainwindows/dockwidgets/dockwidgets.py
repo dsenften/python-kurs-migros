@@ -97,7 +97,7 @@ class MainWindow(QMainWindow):
         cursor.insertText("Industry Park")
         cursor.insertBlock()
         cursor.insertText("Some Country")
-        cursor.setPosition(topFrame.lastPosition())
+        cursor.set_position(topFrame.lastPosition())
         cursor.insertText(QDate.currentDate().toString("d MMMM yyyy"),
                 textFormat)
         cursor.insertBlock()

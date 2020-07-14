@@ -105,7 +105,7 @@ class MainWindow(QMainWindow):
         cursor.insertBlock()
         cursor.insertText("Another country")
 
-        cursor.setPosition(topFrame.lastPosition())
+        cursor.set_position(topFrame.lastPosition())
 
         cursor.insertText(name, textFormat)
         for line in address.split("\n"):
@@ -151,7 +151,7 @@ class MainWindow(QMainWindow):
             cursor = orderTable.cellAt(row, 1).firstCursorPosition()
             cursor.insertText(str(quantity), textFormat)
 
-        cursor.setPosition(topFrame.lastPosition())
+        cursor.set_position(topFrame.lastPosition())
 
         cursor.insertBlock()
 
@@ -175,7 +175,7 @@ class MainWindow(QMainWindow):
 
         cursor.insertText('X', boldFormat)
 
-        cursor.setPosition(topFrame.lastPosition())
+        cursor.set_position(topFrame.lastPosition())
         cursor.insertBlock()
         cursor.insertText("Sincerely,", textFormat)
         cursor.insertBlock()

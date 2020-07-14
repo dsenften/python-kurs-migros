@@ -215,7 +215,7 @@ class SortingBox(QWidget):
 
     def moveItemTo(self, pos):
         offset = pos - self.previousPosition
-        self.itemInMotion.setPosition(self.itemInMotion.position() + offset)
+        self.itemInMotion.set_position(self.itemInMotion.position() + offset)
         self.previousPosition = QPoint(pos)
         self.update()
 

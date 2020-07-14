@@ -11,7 +11,7 @@ if year % 4 == 0:
 else:
     leap_year = False
 
-if leap_year:
+ leap_year:
     print(f"{year} ist ein Schaltjahr")
 else:
     print(f"{year} ist kein Schaltjahr")
