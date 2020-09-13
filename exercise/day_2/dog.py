@@ -8,4 +8,4 @@ elif age == 2:
     print("Entspricht ca. 22 Jahren")
 elif age > 2:
     human = 22 + (age - 2) * 5
-    print(f"Entsprich ca. {human} Jahren")
+    print(f"Entspricht ca. {human} Jahren")
