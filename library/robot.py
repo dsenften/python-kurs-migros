@@ -83,3 +83,28 @@ class Robot(object):
     def get_name(self):
         """ Liefert den Namen des Roboters zurück. """
         return self.name
+
+
+if __name__ == "__main__":
+    """
+    Die folgenden Aufrufe sollten eigentlich aus einer externen Umgebung
+    aufgerufen werden, da wir mit dieser Datei/Klasse auch die Verwendung 
+    von eigenen Modulen/Libraries aufzeigen wollen. 
+    """
+
+    x = Robot(3, 4, "north", "Marvin")
+    print(x)
+
+    x.move(10)
+    x.new_orientation("west")
+    x.move(7)
+    print(x)
+
+    new_name = "Andrew"
+    print(f'{x.get_name()} will be renamed as {new_name}')
+
+    x.rename(new_name)
+    print(f'Hi, this is {x.get_name()}')
+
+    x.set_position([0, 0])
+    print(x)
