@@ -23,4 +23,4 @@ for char in roman_number:
 
 decimal += previous_value
 
-print(f'Ergebnis: {decimal}')
+print(f'Ergebnis: {decimal}.')
