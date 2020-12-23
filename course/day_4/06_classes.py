@@ -1,7 +1,5 @@
 class Person:
 
-    def __init__(self):
-
     def say_hello(self):
         print("Hello")
 
