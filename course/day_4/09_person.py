@@ -16,6 +16,7 @@ class Person:
 
     last_name = property(get_last_name, set_last_name)
 
+
 a = Person('Peter', 'Müller')
 a.last_name = 'Müller-Meier'
 
