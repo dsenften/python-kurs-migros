@@ -68,7 +68,7 @@ class Money:
     def _round(amount: Decimal, currency: Currency) -> Decimal:
         sub_units = CurrencyHelper.sub_unit_for_currency(currency)
         # rstrip is necessary because quantize treats 1. differently from 1.0
-        rounded_to_subunits = amount.quantize(Decimal(str(1 / sub_units).rstrip('0')), \
+        rounded_to_subunits = amount.quantize(Decimal(str(1 / sub_units).rstrip('0')),
                                               rounding=ROUND_HALF_UP)
         decimal_precision = CurrencyHelper.decimal_precision_for_currency(currency)
         return rounded_to_subunits.quantize( \
