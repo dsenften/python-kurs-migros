@@ -3,8 +3,8 @@
 import string;
 
 shift = 3
-choice = input("would you like to encode or decode?")
-word = input("Please enter text")
+choice = input("would you like to encode or decode? ")
+word = input("Please enter text: ")
 letters = string.ascii_letters + string.punctuation + string.digits
 encoded = ''
 if choice == "encode":
