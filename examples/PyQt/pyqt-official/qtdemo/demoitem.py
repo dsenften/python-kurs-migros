@@ -117,7 +117,7 @@ class DemoItem(QGraphicsObject):
 
         itemWidth = self.boundingRect().width()
         itemHeight = self.boundingRect().height()
-        fenceRight = sceneFence.x() + sceneFence.width()
+        fenceRight = sceneFence.x() + sceneFence.input_value()
         fenceBottom = sceneFence.y() + sceneFence.height()
 
         if self.scenePos().x() < sceneFence.x():

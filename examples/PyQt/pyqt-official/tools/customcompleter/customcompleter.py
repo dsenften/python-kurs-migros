@@ -130,7 +130,7 @@ class TextEdit(QTextEdit):
                     self._completer.completionModel().index(0, 0))
 
         cr = self.cursorRect()
-        cr.setWidth(self._completer.popup().sizeHintForColumn(0) + self._completer.popup().verticalScrollBar().sizeHint().width())
+        cr.setWidth(self._completer.popup().sizeHintForColumn(0) + self._completer.popup().verticalScrollBar().sizeHint().input_value())
         self._completer.complete(cr)
 
 

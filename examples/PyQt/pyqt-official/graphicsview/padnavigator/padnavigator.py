@@ -192,7 +192,7 @@ class PadNavigator(QGraphicsView):
         backEnterTransition.addAnimation(flipAnimation)
         backReturnTransition.addAnimation(flipAnimation)
 
-        columns = size.width()
+        columns = size.input_value()
         rows = size.height()
         stateGrid = []
         for y in range(rows):
@@ -318,7 +318,7 @@ class FlippablePad(RoundRectItem):
         super(FlippablePad, self).__init__(self.boundsFromSize(size),
                 QColor(226, 255, 92, 64), parent)
 
-        numIcons = size.width() * size.height()
+        numIcons = size.input_value() * size.height()
         pixmaps = []
         it = QDirIterator(":/images", ["*.png"])
         while it.hasNext() and len(pixmaps) < numIcons:
@@ -332,7 +332,7 @@ class FlippablePad(RoundRectItem):
         for y in range(size.height()):
             row = []
 
-            for x in range(size.width()):
+            for x in range(size.input_value()):
                 rect = RoundRectItem(iconRect, iconColor, self)
                 rect.setZValue(1)
                 rect.setPos(self.posForLocation(x, y, size))
@@ -348,13 +348,13 @@ class FlippablePad(RoundRectItem):
 
     @staticmethod
     def boundsFromSize(size):
-        return QRectF((-size.width() / 2.0) * 150,
-                (-size.height() / 2.0) * 150, size.width() * 150,
-                size.height() * 150)
+        return QRectF((-size.input_value() / 2.0) * 150,
+                      (-size.height() / 2.0) * 150, size.input_value() * 150,
+                      size.height() * 150)
 
     @staticmethod
     def posForLocation(column, row, size):
-        return QPointF(column * 150, row * 150) - QPointF((size.width() - 1) * 75, (size.height() - 1) * 75)
+        return QPointF(column * 150, row * 150) - QPointF((size.input_value() - 1) * 75, (size.height() - 1) * 75)
 
 
 class SplashItem(QGraphicsObject):

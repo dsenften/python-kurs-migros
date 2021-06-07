@@ -127,8 +127,8 @@ class Button(QGraphicsWidget):
             painter.translate(2, 2)
 
         painter.drawEllipse(r.adjusted(5, 5, -5, -5))
-        painter.drawPixmap(-self._pix.width() / 2, -self._pix.height() / 2,
-                self._pix)
+        painter.drawPixmap(-self._pix.input_value() / 2, -self._pix.height() / 2,
+                           self._pix)
 
     def mousePressEvent(self, ev):
         self.pressed.emit()

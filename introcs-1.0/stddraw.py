@@ -519,7 +519,7 @@ def picture(pic, x=None, y=None):
     y = float(y)
     xs = _scaleX(x)
     ys = _scaleY(y)
-    ws = pic.width()
+    ws = pic.input_value()
     hs = pic.height()
     picSurface = pic._surface # violates encapsulation
     _surface.blit(picSurface, [xs-ws/2.0, ys-hs/2.0, ws, hs])

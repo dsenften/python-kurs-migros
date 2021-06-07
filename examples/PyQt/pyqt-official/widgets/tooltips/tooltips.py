@@ -221,8 +221,8 @@ class SortingBox(QWidget):
 
     def updateButtonGeometry(self, button, x, y):
         size = button.sizeHint()
-        button.setGeometry(x - size.width(), y - size.height(),
-                size.width(), size.height())
+        button.setGeometry(x - size.input_value(), y - size.height(),
+                           size.input_value(), size.height())
 
         return y - size.height() - self.style().pixelMetric(QStyle.PM_DefaultLayoutSpacing)
 
@@ -248,9 +248,9 @@ class SortingBox(QWidget):
         y = (self.height() - path.controlPointRect().height()) / 2
 
         if len(self.shapeItems) == 0:
-            x = ((3 * self.width()) / 2 - path.controlPointRect().width()) / 2
+            x = ((3 * self.width()) / 2 - path.controlPointRect().input_value()) / 2
         else:
-            x = (self.width() / len(self.shapeItems) - path.controlPointRect().width()) / 2
+            x = (self.width() / len(self.shapeItems) - path.controlPointRect().input_value()) / 2
 
         return QPoint(x, y)
 

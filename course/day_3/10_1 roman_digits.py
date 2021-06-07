@@ -1,4 +1,4 @@
-roman_number = input('Bitte geben Sie eine römische Zahl ein: ')
+roman_number = input('Bitte geben Sie eine römische Zahl ein: ').upper()  # IV <str>
 
 roman_digits = {
     'I': 1,

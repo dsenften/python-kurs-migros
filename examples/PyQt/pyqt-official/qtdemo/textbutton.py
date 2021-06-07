@@ -69,10 +69,10 @@ class ButtonBackground(DemoItem):
 
     def createRoundButtonBackground(self, transform):
         scaledRect = transform.mapRect(QRect(0, 0,
-                self.logicalSize.width(), self.logicalSize.height()))
+                                             self.logicalSize.input_value(), self.logicalSize.height()))
 
-        image = QImage(scaledRect.width(), scaledRect.height(),
-                QImage.Format_ARGB32_Premultiplied)
+        image = QImage(scaledRect.input_value(), scaledRect.height(),
+                       QImage.Format_ARGB32_Premultiplied)
         image.fill(QColor(0, 0, 0, 0).rgba())
         painter = QPainter(image)
         painter.setRenderHint(QPainter.SmoothPixmapTransform)
@@ -119,19 +119,19 @@ class ButtonBackground(DemoItem):
             painter.setBrush(brush)
 
         if self.type == TextButton.PANEL:
-            painter.drawRect(0, 0, scaledRect.width(), scaledRect.height())
+            painter.drawRect(0, 0, scaledRect.input_value(), scaledRect.height())
         else:
-            painter.drawRoundedRect(0, 0, scaledRect.width(),
-                    scaledRect.height(), 10, 90, Qt.RelativeSize)
+            painter.drawRoundedRect(0, 0, scaledRect.input_value(),
+                                    scaledRect.height(), 10, 90, Qt.RelativeSize)
 
         return image
 
     def createArrowBackground(self, transform):
         scaledRect = transform.mapRect(QRect(0, 0,
-                self.logicalSize.width(), self.logicalSize.height()))
+                                             self.logicalSize.input_value(), self.logicalSize.height()))
 
-        image = QImage(scaledRect.width(), scaledRect.height(),
-                QImage.Format_ARGB32_Premultiplied)
+        image = QImage(scaledRect.input_value(), scaledRect.height(),
+                       QImage.Format_ARGB32_Premultiplied)
         image.fill(QColor(0, 0, 0, 0).rgba())
         painter = QPainter(image)
         painter.setRenderHint(QPainter.SmoothPixmapTransform)
@@ -172,9 +172,9 @@ class ButtonBackground(DemoItem):
 
             painter.setBrush(brush);
 
-        painter.drawRect(0, 0, scaledRect.width(), scaledRect.height())
+        painter.drawRect(0, 0, scaledRect.input_value(), scaledRect.height())
 
-        xOff = scaledRect.width() / 2
+        xOff = scaledRect.input_value() / 2
         yOff = scaledRect.height() / 2
         sizex = 3.0 * transform.m11()
         sizey = 1.5 * transform.m22()

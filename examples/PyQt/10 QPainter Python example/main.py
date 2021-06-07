@@ -9,7 +9,7 @@ class PlainTextEdit(QPlainTextEdit):
         self._holes = []
         self._bullet = QPixmap("bullet.png")
         size = self._bullet.size()
-        self._offset = QPoint(size.width() / 2, size.height() / 2)
+        self._offset = QPoint(size.input_value() / 2, size.height() / 2)
     def mousePressEvent(self, e):
         self._holes.append(e.pos())
         super().mousePressEvent(e)

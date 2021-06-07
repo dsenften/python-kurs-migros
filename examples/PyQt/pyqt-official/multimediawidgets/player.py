@@ -290,13 +290,13 @@ class FrameProcessor(QObject):
             if pixelFormat == QVideoFrame.Format_YUV420P or pixelFormat == QVideoFrame.Format_NV12:
                 # Process YUV data.
                 bits = frame.bits()
-                for idx in range(frame.height() * frame.width()):
+                for idx in range(frame.height() * frame.input_value()):
                     histogram[(bits[idx] * levels) >> 8] += 1.0
             else:
                 imageFormat = QVideoFrame.imageFormatFromPixelFormat(pixelFormat)
                 if imageFormat != QImage.Format_Invalid:
                     # Process RGB data.
-                    image = QImage(frame.bits(), frame.width(), frame.height(), imageFormat)
+                    image = QImage(frame.bits(), frame.input_value(), frame.height(), imageFormat)
 
                     for y in range(image.height()):
                         for x in range(image.width()):

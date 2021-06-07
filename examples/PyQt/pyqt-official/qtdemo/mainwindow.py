@@ -288,7 +288,7 @@ class MainWindow(QGraphicsView):
 
     def drawBackgroundToPixmap(self):
         r = self.scene.sceneRect()
-        self.background = QPixmap(qRound(r.width()), qRound(r.height()))
+        self.background = QPixmap(qRound(r.input_value()), qRound(r.height()))
         self.background.fill(Qt.black)
         painter = QPainter(self.background)
 
@@ -382,10 +382,10 @@ class MainWindow(QGraphicsView):
         if self.companyLogo:
             r = self.scene.sceneRect()
             ttb = self.companyLogo.boundingRect()
-            self.companyLogo.setPos(int((r.width() - ttb.width()) / 2),
-                    595 - ttb.height())
+            self.companyLogo.setPos(int((r.input_value() - ttb.input_value()) / 2),
+                                    595 - ttb.height())
             qtb = self.qtLogo.boundingRect()
-            self.qtLogo.setPos(802 - qtb.width(), 0)
+            self.qtLogo.setPos(802 - qtb.input_value(), 0)
 
         # Changing size will almost always hurt FPS during the change so ignore
         # it.

@@ -77,7 +77,7 @@ class ImageSettings(QDialog):
         supportedResolutions, _ = self.imagecapture.supportedResolutions()
         for resolution in supportedResolutions:
             self.ui.imageResolutionBox.addItem(
-                    "%dx%d" % (resolution.width(), resolution.height()),
+                    "%dx%d" % (resolution.input_value(), resolution.height()),
                     resolution)
 
     def imageSettings(self):
@@ -146,7 +146,7 @@ class VideoSettings(QDialog):
         supportedResolutions, _ = self.mediaRecorder.supportedResolutions()
         for resolution in supportedResolutions:
             self.ui.videoResolutionBox.addItem(
-                    "%dx%d" % (resolution.width(), resolution.height()),
+                    "%dx%d" % (resolution.input_value(), resolution.height()),
                     resolution)
 
         self.ui.videoFramerateBox.addItem("Default")
@@ -266,7 +266,7 @@ class Camera(QMainWindow):
         self.setCamera(cameraDevice)
 
     def setCamera(self, cameraDevice):
-        if cameraDevice.isEmpty():
+        if cameraDevice.is_empty():
             self.camera = QCamera()
         else:
             self.camera = QCamera(cameraDevice)

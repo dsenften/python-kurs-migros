@@ -6,16 +6,20 @@ The outstream module defines the OutStream class.
 
 import sys
 
-#-----------------------------------------------------------------------
+# If you are using unicode with both Python 2 or Python 3, use this
+if sys.version_info.major == 3:
+    unicode = str
+
+
+# -----------------------------------------------------------------------
 
 class OutStream:
-
     """
     An OutStream object wraps around a text file or sys.stdout, and
     supports writing to that stream.
     """
 
-    #-------------------------------------------------------------------
+    # -------------------------------------------------------------------
 
     def __init__(self, f=None):
         """
@@ -31,7 +35,7 @@ class OutStream:
             else:
                 self._stream = open(f, 'w', encoding='utf-8')
 
-    #-------------------------------------------------------------------
+    # -------------------------------------------------------------------
 
     def writeln(self, x=''):
         """
@@ -46,13 +50,13 @@ class OutStream:
         self._stream.write('\n')
         self._stream.flush()
 
-    #-------------------------------------------------------------------
+    # -------------------------------------------------------------------
 
     def write(self, x=''):
         """
         Write x to the stream wrapped by self.
         """
-        if (sys.hexversion < 0x03000000):
+        if sys.hexversion < 0x03000000:
             x = unicode(x)
             x = x.encode('utf-8')
         else:
@@ -60,7 +64,7 @@ class OutStream:
         self._stream.write(x)
         self._stream.flush()
 
-    #-------------------------------------------------------------------
+    # -------------------------------------------------------------------
 
     def writef(self, fmt, *args):
         """
@@ -74,7 +78,7 @@ class OutStream:
         self._stream.write(x)
         self._stream.flush()
 
-    #-------------------------------------------------------------------
+    # -------------------------------------------------------------------
 
     def __del__(self):
         """

@@ -49,5 +49,5 @@ class PrintView(QTableView):
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
     def print_(self, printer):
-        self.resize(printer.width(), printer.height())
+        self.resize(printer.input_value(), printer.height())
         self.render(printer)

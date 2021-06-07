@@ -196,7 +196,7 @@ class HttpWindow(QDialog):
 
     def httpReadyRead(self):
         if self.outFile is not None:
-            self.outFile.write(self.reply.readAll())
+            self.outFile.write(self.reply.read_all())
 
     def updateDataReadProgress(self, bytesRead, totalBytes):
         if self.httpRequestAborted:

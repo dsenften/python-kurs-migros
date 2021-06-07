@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 stdio.py
 
@@ -16,23 +18,29 @@ functions:
 
 Usually it's better to use one set exclusively.
 """
-    
+
 import sys
 import re
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 # Change sys.stdin so it provides universal newline support. 
 
-if (sys.hexversion < 0x03000000):
+if sys.hexversion < 0x03000000:
     import os
+
     sys.stdin = os.fdopen(sys.stdin.fileno(), 'rU', 0)
-else:    
+else:
     sys.stdin = open(sys.stdin.fileno(), 'r', newline=None)
-            
-#=======================================================================
+
+# If you are using unicode with both Python 2 or Python 3, use this
+if sys.version_info.major == 3:
+    unicode = str
+
+
+# =======================================================================
 # Writing functions
-#=======================================================================
+# =======================================================================
 
 def writeln(x=''):
     """
@@ -47,13 +55,14 @@ def writeln(x=''):
     sys.stdout.write('\n')
     sys.stdout.flush()
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
 
 def write(x=''):
     """
     Write x to standard output.
     """
-    if (sys.hexversion < 0x03000000):
+    if sys.hexversion < 0x03000000:
         x = unicode(x)
         x = x.encode('utf-8')
     else:
@@ -61,7 +70,8 @@ def write(x=''):
     sys.stdout.write(x)
     sys.stdout.flush()
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
 
 def writef(fmt, *args):
     """
@@ -75,15 +85,17 @@ def writef(fmt, *args):
     sys.stdout.write(x)
     sys.stdout.flush()
 
-#=======================================================================
+
+# =======================================================================
 # Reading functions
-#=======================================================================
+# =======================================================================
 
 _buffer = ''
 
-#-----------------------------------------------------------------------
 
-def _readRegExp(regExp):
+# -----------------------------------------------------------------------
+
+def _read_regex(regex):
     """
     Discard leading white space characters from standard input. Then read
     from standard input and return a string matching regular expression
@@ -92,19 +104,20 @@ def _readRegExp(regExp):
     be read from standard input do not match 'regExp'.
     """
     global _buffer
-    if isEmpty():
+    if is_empty():
         raise EOFError()
-    compiledRegExp = re.compile(r'^\s*' + regExp)
-    match = compiledRegExp.search(_buffer)
+    compiled_regxp = re.compile(r'^\s*' + regex)
+    match = compiled_regxp.search(_buffer)
     if match is None:
         raise ValueError()
     s = match.group()
     _buffer = _buffer[match.end():]
     return s.lstrip()
 
-#-----------------------------------------------------------------------
 
-def isEmpty():
+# -----------------------------------------------------------------------
+
+def is_empty():
     """
     Return True if no non-whitespace characters remain in standard
     input. Otherwise return False.
@@ -119,9 +132,11 @@ def isEmpty():
         _buffer += line
     return False
 
-#-----------------------------------------------------------------------
 
-def readInt():
+# -----------------------------------------------------------------------
+
+# noinspection DuplicatedCode
+def read_int():
     """
     Discard leading white space characters from standard input. Then
     read from standard input a sequence of characters comprising an
@@ -131,35 +146,43 @@ def readInt():
     next characters to be read from standard input cannot comprise
     an integer.
     """
-    s = _readRegExp(r'[-+]?(0[xX][\dA-Fa-f]+|0[0-7]*|\d+)')
+    s = _read_regex(r'[-+]?(0[xX][\dA-Fa-f]+|0[0-7]*|\d+)')
     radix = 10
-    strLength = len(s)
-    if (strLength >= 1) and (s[0:1] == '0'): radix = 8
-    if (strLength >= 2) and (s[0:2] == '-0'): radix = 8
-    if (strLength >= 2) and (s[0:2] == '0x'): radix = 16
-    if (strLength >= 2) and (s[0:2] == '0X'): radix = 16
-    if (strLength >= 3) and (s[0:3] == '-0x'): radix = 16
-    if (strLength >= 3) and (s[0:3] == '-0X'): radix = 16
+    str_length = len(s)
+    if (str_length >= 1) and (s[0:1] == '0'):
+        radix = 8
+    if (str_length >= 2) and (s[0:2] == '-0'):
+        radix = 8
+    if (str_length >= 2) and (s[0:2] == '0x'):
+        radix = 16
+    if (str_length >= 2) and (s[0:2] == '0X'):
+        radix = 16
+    if (str_length >= 3) and (s[0:3] == '-0x'):
+        radix = 16
+    if (str_length >= 3) and (s[0:3] == '-0X'):
+        radix = 16
     return int(s, radix)
 
-#-----------------------------------------------------------------------
 
-def readAllInts():
+# -----------------------------------------------------------------------
+
+def read_all_ints():
     """
     Read all remaining strings from standard input, convert each to
     an int, and return those ints in an array. Raise a ValueError if
     any of the strings cannot be converted to an int.
     """
-    strings = readAllStrings()
+    strings = read_all_strings()
     ints = []
     for s in strings:
         i = int(s)
         ints.append(i)
     return ints
 
-#-----------------------------------------------------------------------
 
-def readFloat():
+# -----------------------------------------------------------------------
+
+def read_float():
     """
     Discard leading white space characters from standard input. Then
     read from standard input a sequence of characters comprising a
@@ -168,27 +191,29 @@ def readFloat():
     in standard input. Raise a ValueError if the next characters to be
     read from standard input cannot comprise a float.
     """
-    s = _readRegExp(r'[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?')
+    s = _read_regex(r'[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?')
     return float(s)
 
-#-----------------------------------------------------------------------
 
-def readAllFloats():
+# -----------------------------------------------------------------------
+
+def read_all_floats():
     """
     Read all remaining strings from standard input, convert each to
     a float, and return those floats in an array. Raise a ValueError if
     any of the strings cannot be converted to a float.
     """
-    strings = readAllStrings()
+    strings = read_all_strings()
     floats = []
     for s in strings:
         f = float(s)
         floats.append(f)
     return floats
 
-#-----------------------------------------------------------------------
 
-def readBool():
+# -----------------------------------------------------------------------
+
+def read_bool():
     """
     Discard leading white space characters from standard input. Then
     read from standard input a sequence of characters comprising a bool.
@@ -203,54 +228,58 @@ def readBool():
     -- 1 (means true)
     -- 0 (means false)
     """
-    s = _readRegExp(r'(True)|(False)|1|0')
+    s = _read_regex(r'(True)|(False)|1|0')
     if (s == 'True') or (s == '1'):
         return True
     return False
 
-#-----------------------------------------------------------------------
 
-def readAllBools():
+# -----------------------------------------------------------------------
+
+def read_all_bools():
     """
     Read all remaining strings from standard input, convert each to
     a bool, and return those bools in an array. Raise a ValueError if
     any of the strings cannot be converted to a bool.
     """
-    strings = readAllStrings()
+    strings = read_all_strings()
     bools = []
     for s in strings:
         b = bool(s)
         bools.append(b)
     return bools
 
-#-----------------------------------------------------------------------
 
-def readString():
+# -----------------------------------------------------------------------
+
+def read_string():
     """
     Discard leading white space characters from standard input. Then
     read from standard input a sequence of characters comprising a
     string, and return the string. Raise an EOFError if no
     non-whitespace characters remain in standard input.
     """
-    s = _readRegExp(r'\S+')
+    s = _read_regex(r'\S+')
     return s
 
-#-----------------------------------------------------------------------
 
-def readAllStrings():
+# -----------------------------------------------------------------------
+
+def read_all_strings():
     """
     Read all remaining strings from standard input, and return them in
     an array.
     """
     strings = []
-    while not isEmpty():
-        s = readString()
+    while not is_empty():
+        s = read_string()
         strings.append(s)
     return strings
 
-#-----------------------------------------------------------------------
 
-def hasNextLine():
+# -----------------------------------------------------------------------
+
+def has_next_line():
     """
     Return True if standard input has a next line. Otherwise return
     False.
@@ -266,36 +295,39 @@ def hasNextLine():
             return False
         return True
 
-#-----------------------------------------------------------------------
 
-def readLine():
+# -----------------------------------------------------------------------
+
+def read_line():
     """
     Read and return as a string the next line of standard input.
     Raise an EOFError is there is no next line.
     """
     global _buffer
-    if not hasNextLine():
+    if not has_next_line():
         raise EOFError()
     s = _buffer
     _buffer = ''
     return s.rstrip('\n')
 
-#-----------------------------------------------------------------------
 
-def readAllLines():
+# -----------------------------------------------------------------------
+
+def read_all_lines():
     """
     Read all remaining lines from standard input, and return them as
     strings in an array.
     """
     lines = []
-    while hasNextLine():
-        line = readLine()
+    while has_next_line():
+        line = read_line()
         lines.append(line)
     return lines
 
-#-----------------------------------------------------------------------
 
-def readAll():
+# -----------------------------------------------------------------------
+
+def read_all():
     """
     Read and return as a string all remaining lines of standard input.
     """
@@ -308,11 +340,13 @@ def readAll():
         s += line
     return s
 
-#=======================================================================
-# For Testing
-#=======================================================================
 
-def _testWrite():
+# =======================================================================
+# For Testing
+# =======================================================================
+
+# noinspection PyTypeChecker
+def _test_write():
     writeln()
     writeln('string')
     writeln(123456)
@@ -327,7 +361,8 @@ def _testWrite():
     writef('<%s> <%8d> <%14.8f>\n', 'string', 123456, 123.456)
     writef('formatstring\n')
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
 
 def _main():
     """
@@ -335,20 +370,26 @@ def _main():
     function that should be called.
     """
 
-    map = {
-        'readInt':    readInt,    'readAllInts':    readAllInts,
-        'readFloat':  readFloat,  'readAllFloats':  readAllFloats,
-        'readBool':   readBool,   'readAllBools':   readAllBools,
-        'readString': readString, 'readAllStrings': readAllStrings,
-        'readLine':   readLine,   'readAllLines' :  readAllLines,
-        'readAll':    readAll }
+    my_map = {
+        'read_int': read_int,
+        'read_all_ints': read_all_ints,
+        'read_float': read_float,
+        'read_all_floats': read_all_floats,
+        'read_bool': read_bool,
+        'read_all_bools': read_all_bools,
+        'read_string': read_string,
+        'read_all_strings': read_all_strings,
+        'read_line': read_line,
+        'read_all_lines': read_all_lines,
+        'read_all': read_all}
 
-    testId = sys.argv[1]
+    test_id = sys.argv[1]
 
-    if testId == 'write':
-        _testWrite()
+    if test_id == 'write':
+        _test_write()
     else:
-        writeln(map[testId]())
+        writeln(my_map[test_id]())
+
 
 if __name__ == '__main__':
     _main()

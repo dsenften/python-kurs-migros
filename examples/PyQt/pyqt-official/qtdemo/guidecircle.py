@@ -57,7 +57,7 @@ class GuideCircle(Guide):
     def __init__(self, rect, startAngle=0.0, span=360.0, dir=CCW, follows=None):
         super(GuideCircle, self).__init__(follows)
 
-        self.radiusX = rect.width() / 2.0
+        self.radiusX = rect.input_value() / 2.0
         self.radiusY = rect.height() / 2.0
         self.posX = rect.topLeft().x()
         self.posY = rect.topLeft().y()

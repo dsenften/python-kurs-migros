@@ -57,8 +57,8 @@ class LetterItem(DemoItem):
 
     def createImage(self, transform):
         scaledRect = transform.mapRect(QRect(0, 0, 25, 25))
-        image = QImage(scaledRect.width(), scaledRect.height(),
-                QImage.Format_ARGB32_Premultiplied)
+        image = QImage(scaledRect.input_value(), scaledRect.height(),
+                       QImage.Format_ARGB32_Premultiplied)
         image.fill(0)
         painter = QPainter(image)
         painter.scale(transform.m11(), transform.m22())

@@ -497,7 +497,7 @@ class MenuManager(QObject):
                     None)
 
     def createMenu(self, category, type):
-        sw = self.window.scene.sceneRect().width()
+        sw = self.window.scene.sceneRect().input_value()
         xOffset = 15
         yOffset = 10
         maxExamples = Colors.menuCount
@@ -653,7 +653,7 @@ class MenuManager(QObject):
         item.setRecursiveVisible(False)
         item.setZValue(10)
 
-        sw = self.window.scene.sceneRect().width()
+        sw = self.window.scene.sceneRect().input_value()
         xOffset = 70
 
         # Create in-animation.
@@ -679,7 +679,7 @@ class MenuManager(QObject):
         item.setRecursiveVisible(False)
         item.setZValue(10)
 
-        sw = self.window.scene.sceneRect().width()
+        sw = self.window.scene.sceneRect().input_value()
         sh = self.window.scene.sceneRect().height()
 
         # Create in-animation.
@@ -712,7 +712,7 @@ class MenuManager(QObject):
         xOffset = 230.0
         infoIn = DemoItemAnimation(item, DemoItemAnimation.ANIM_IN)
         infoIn.setDuration(650)
-        infoIn.setStartValue(QPointF(self.window.scene.sceneRect().width(), Colors.contentStartY))
+        infoIn.setStartValue(QPointF(self.window.scene.sceneRect().input_value(), Colors.contentStartY))
         infoIn.setKeyValueAt(0.60, QPointF(xOffset, Colors.contentStartY))
         infoIn.setKeyValueAt(0.70, QPointF(xOffset + 20, Colors.contentStartY))
         infoIn.setKeyValueAt(0.80, QPointF(xOffset, Colors.contentStartY))
@@ -747,7 +747,7 @@ class MenuManager(QObject):
         self.tickerInAnim = DemoItemAnimation(self.ticker,
                 DemoItemAnimation.ANIM_IN)
         self.tickerInAnim.setDuration(500)
-        self.tickerInAnim.setStartValue(QPointF(self.window.scene.sceneRect().width(), Colors.contentStartY + qtPosY))
+        self.tickerInAnim.setStartValue(QPointF(self.window.scene.sceneRect().input_value(), Colors.contentStartY + qtPosY))
         self.tickerInAnim.setKeyValueAt(0.60, QPointF(qtendpos, Colors.contentStartY + qtPosY))
         self.tickerInAnim.setKeyValueAt(0.70, QPointF(qtendpos + 30, Colors.contentStartY + qtPosY))
         self.tickerInAnim.setKeyValueAt(0.80, QPointF(qtendpos, Colors.contentStartY + qtPosY))
@@ -760,13 +760,13 @@ class MenuManager(QObject):
         qtOut.setHideOnFinished(True)
         qtOut.setDuration(500)
         qtOut.setStartValue(QPointF(qtendpos, Colors.contentStartY + qtPosY))
-        qtOut.setEndValue(QPointF(self.window.scene.sceneRect().width() + 700, Colors.contentStartY + qtPosY))
+        qtOut.setEndValue(QPointF(self.window.scene.sceneRect().input_value() + 700, Colors.contentStartY + qtPosY))
         movie_out.append(qtOut)
 
         # Move ticker in on activate.
         qtActivate = DemoItemAnimation(self.ticker)
         qtActivate.setDuration(400)
-        qtActivate.setStartValue(QPointF(self.window.scene.sceneRect().width(), Colors.contentStartY + qtPosY))
+        qtActivate.setStartValue(QPointF(self.window.scene.sceneRect().input_value(), Colors.contentStartY + qtPosY))
         qtActivate.setKeyValueAt(0.60, QPointF(qtendpos, Colors.contentStartY + qtPosY))
         qtActivate.setKeyValueAt(0.70, QPointF(qtendpos + 30, Colors.contentStartY + qtPosY))
         qtActivate.setKeyValueAt(0.80, QPointF(qtendpos, Colors.contentStartY + qtPosY))

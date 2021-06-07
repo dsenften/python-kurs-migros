@@ -58,8 +58,8 @@ class ScanItem(DemoItem):
 
     def createImage(self, transform):
         scaledRect = transform.mapRect(QRect(0, 0, ScanItem.ITEM_WIDTH, ScanItem.ITEM_HEIGHT))
-        image = QImage(scaledRect.width(), scaledRect.height(),
-                QImage.Format_ARGB32_Premultiplied)
+        image = QImage(scaledRect.input_value(), scaledRect.height(),
+                       QImage.Format_ARGB32_Premultiplied)
         image.fill(QColor(0, 0, 0, 0).rgba())
         painter = QPainter(image)
         painter.setRenderHint(QPainter.Antialiasing)
@@ -67,12 +67,12 @@ class ScanItem(DemoItem):
         if Colors.useEightBitPalette:
             painter.setPen(QPen(QColor(100, 100, 100), 2))
             painter.setBrush(QColor(206, 246, 117))
-            painter.drawEllipse(1, 1, scaledRect.width() - 2,
-                    scaledRect.height() - 2)
+            painter.drawEllipse(1, 1, scaledRect.input_value() - 2,
+                                scaledRect.height() - 2)
         else:
             painter.setPen(QPen(QColor(0, 0, 0, 15), 1))
             painter.setBrush(QColor(0, 0, 0, 15))
-            painter.drawEllipse(1, 1, scaledRect.width() - 2,
-                    scaledRect.height() - 2)
+            painter.drawEllipse(1, 1, scaledRect.input_value() - 2,
+                                scaledRect.height() - 2)
 
         return image

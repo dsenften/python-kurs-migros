@@ -302,10 +302,10 @@ class MainWindow(QMainWindow):
         self.setupPuzzle()
 
     def setupPuzzle(self):
-        size = min(self.puzzleImage.width(), self.puzzleImage.height())
+        size = min(self.puzzleImage.input_value(), self.puzzleImage.height())
         self.puzzleImage = self.puzzleImage.copy(
-                (self.puzzleImage.width() - size)/2,
-                (self.puzzleImage.height() - size)/2, size, size).scaled(400, 400, Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
+            (self.puzzleImage.input_value() - size) / 2,
+            (self.puzzleImage.height() - size) / 2, size, size).scaled(400, 400, Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
 
         self.piecesList.clear()
 

@@ -87,10 +87,10 @@ def readInt1D():
     Read from sys.stdin and return an array of integers. An integer at
     the beginning of sys.stdin defines the array's length.
     """
-    count = stdio.readInt()
+    count = stdio.read_int()
     a = create1D(count, None)
     for i in range(count):
-        a[i] = stdio.readInt()
+        a[i] = stdio.read_int()
     return a
 
 #-----------------------------------------------------------------------
@@ -101,12 +101,12 @@ def readInt2D():
     Two integers at the beginning of sys.stdin define the array's
     dimensions.
     """
-    rowCount = stdio.readInt()
-    colCount = stdio.readInt()
+    rowCount = stdio.read_int()
+    colCount = stdio.read_int()
     a = create2D(rowCount, colCount, 0)
     for row in range(rowCount):
         for col in range(colCount):
-            a[row][col] = stdio.readInt()
+            a[row][col] = stdio.read_int()
     return a
 
 #-----------------------------------------------------------------------
@@ -116,10 +116,10 @@ def readFloat1D():
     Read from sys.stdin and return an array of floats. An integer at the
     beginning of sys.stdin defines the array's length.
     """
-    count = stdio.readInt()
+    count = stdio.read_int()
     a = create1D(count, None)
     for i in range(count):
-        a[i] = stdio.readFloat()
+        a[i] = stdio.read_float()
     return a
 
 #-----------------------------------------------------------------------
@@ -130,12 +130,12 @@ def readFloat2D():
     Two integers at the beginning of sys.stdin define the array's
     dimensions.
     """
-    rowCount = stdio.readInt()
-    colCount = stdio.readInt()
+    rowCount = stdio.read_int()
+    colCount = stdio.read_int()
     a = create2D(rowCount, colCount, 0.0)
     for row in range(rowCount):
         for col in range(colCount):
-            a[row][col] = stdio.readFloat()
+            a[row][col] = stdio.read_float()
     return a
 
 #-----------------------------------------------------------------------
@@ -145,10 +145,10 @@ def readBool1D():
     Read from sys.stdin and return an array of booleans. An integer at
     the beginning of sys.stdin defines the array's length.
     """
-    count = stdio.readInt()
+    count = stdio.read_int()
     a = create1D(count, None)
     for i in range(count):
-        a[i] = stdio.readBool()
+        a[i] = stdio.read_bool()
     return a
 
 #-----------------------------------------------------------------------
@@ -159,12 +159,12 @@ def readBool2D():
     Two integers at the beginning of sys.stdin define the array's
     dimensions.
     """
-    rowCount = stdio.readInt()
-    colCount = stdio.readInt()
+    rowCount = stdio.read_int()
+    colCount = stdio.read_int()
     a = create2D(rowCount, colCount, False)
     for row in range(rowCount):
         for col in range(colCount):
-            a[row][col] = stdio.readBool()
+            a[row][col] = stdio.read_bool()
     return a
 
 #=======================================================================

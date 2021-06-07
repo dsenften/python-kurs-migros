@@ -393,7 +393,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.updateActions()
 
     def updateActions(self):
-        hasSelection = not self.view.selectionModel().selection().isEmpty()
+        hasSelection = not self.view.selectionModel().selection().is_empty()
         self.removeRowAction.setEnabled(hasSelection)
         self.removeColumnAction.setEnabled(hasSelection)
 
